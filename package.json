@@ -40,6 +40,7 @@
   "dependencies": {
     "@pixi/ui": "^2.2.0",
     "electron-squirrel-startup": "^1.0.1",
+    "pixi-viewport": "^6.0.3",
     "pixi.js": "^8.7.2"
   }
 }

@@ -4,6 +4,13 @@ import { FILL_COLOR } from './shared/constant/constants';
 import { Graphics } from 'pixi.js';
 
 import { Button } from '@pixi/ui';
+import { Viewport } from 'pixi-viewport';
+import {
+  initializeViewport,
+  initializeViewportPlugins,
+} from './shared/Viewport';
+import { resetView } from './shared/Viewport/resetView';
+import { WORLD_HEIGHT, WORLD_WIDTH } from './shared/constant/viewport';
 
 // Asynchronous IIFE
 (async () => {
@@ -26,23 +33,33 @@ import { Button } from '@pixi/ui';
   // Intialize the application.
   await app.init(appOptions);
 
+  let viewport: Viewport = initializeViewport(app.renderer.events);
+  app.stage.addChild(viewport);
+  initializeViewportPlugins();
+  resetView(viewport);
+
   // Create a new instance of the Graphics class.
   const graphics = new Graphics();
 
   //add reactangle
-  graphics.rect(0, 0, 100, 100).fill(0xff0000);
+  graphics.rect(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 100, 100).fill(0xff0000);
 
   // Add the graphics to the stage.
 
   //add button
   const container = new Container();
   const button = new Button(
-    new Graphics().rect(200, 100, 100, 50).fill(0x22ffff),
+    new Graphics()
+      .rect(WORLD_WIDTH / 2 + 200, WORLD_HEIGHT / 2 + 100, 100, 50)
+      .fill(0x22ffff),
   );
 
-  button.onPress.connect(() => console.log('onPress'));
+  button.onPress.connect(() => {
+    console.log('Button pressed!');
+    resetView(viewport);
+  });
 
   container.addChild(button.view);
-  app.stage.addChild(graphics);
-  app.stage.addChild(container);
+  viewport.addChild(graphics);
+  viewport.addChild(container);
 })();
