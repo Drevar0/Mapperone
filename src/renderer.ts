@@ -27,4 +27,4 @@
  */
 
 import './index.css';
-import "./App.ts";
+import './App.ts';
