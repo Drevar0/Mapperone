@@ -11,6 +11,7 @@ import {
 } from './shared/Viewport';
 import { resetView } from './shared/Viewport/resetView';
 import { WORLD_HEIGHT, WORLD_WIDTH } from './shared/constant/viewport';
+import { bottomTollbar } from './components/static/bottomToolbar';
 
 // Asynchronous IIFE
 (async () => {
@@ -33,7 +34,7 @@ import { WORLD_HEIGHT, WORLD_WIDTH } from './shared/constant/viewport';
   // Intialize the application.
   await app.init(appOptions);
 
-  let viewport: Viewport = initializeViewport(app.renderer.events);
+  const viewport: Viewport = initializeViewport(app.renderer.events);
   app.stage.addChild(viewport);
   initializeViewportPlugins();
   resetView(viewport);
@@ -62,4 +63,6 @@ import { WORLD_HEIGHT, WORLD_WIDTH } from './shared/constant/viewport';
   container.addChild(button.view);
   viewport.addChild(graphics);
   viewport.addChild(container);
+
+  app.stage.addChild(bottomTollbar());
 })();
