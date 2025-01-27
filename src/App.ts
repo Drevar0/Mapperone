@@ -55,10 +55,6 @@ import { bottomTollbar } from './components/static/bottomToolbar';
       .fill(0x22ffff),
   );
 
-  button.onPress.connect(() => {
-    console.log('Button pressed!');
-    resetView(viewport);
-  });
 
   container.addChild(button.view);
   viewport.addChild(graphics);
