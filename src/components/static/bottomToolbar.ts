@@ -1,7 +1,7 @@
 import { Container, Graphics, Text, TextStyle } from 'pixi.js';
-import { getViewport } from '../../shared/Viewport';
-import { resetView } from '../../shared/Viewport/resetView';
-import BaseButton from '../core/BaseButton';
+import { getViewport } from 'src/shared/Viewport';
+import { resetView } from 'src/shared/Viewport/resetView';
+import BaseButton from 'src/components/core/BaseButton';
 
 export const bottomTollbar = () => {
   const container = new Container({
@@ -22,30 +22,6 @@ export const bottomTollbar = () => {
     container.position.set(window.innerWidth - 120, window.innerHeight - 70);
     container.pivot.set(container.width, container.height);
   });
-
-  // addNodeButton
-  //     .roundRect(0, 0, 70, 40, 5)
-  //     .fill(0xeeedd7)
-  //     .addChild(
-  //         new Text({
-  //             text: "Add Node",
-  //             style: textStyle
-  //         })
-  //     );
-
-  // const resetViewButton = new Button(
-  //     new Graphics()
-  //       .roundRect(0, 0, 70, 40, 5)
-  //       .fill(0x22ffff)
-  //       .addChild(
-  //         new Text({
-  //             text: "Reset View",
-  //             style: textStyle
-  //     }))
-  //   );
-  // resetViewButton.onPress.connect(() => {
-  //     resetView(getViewport());
-  //   });
 
   const button = BaseButton({
     text: 'Reset View',

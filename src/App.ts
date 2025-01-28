@@ -1,16 +1,13 @@
 import { Application, ApplicationOptions, Container } from 'pixi.js';
-import { FILL_COLOR } from './shared/constant/constants';
+import { FILL_COLOR } from 'src/shared/constant/constants';
 
-import { Graphics } from 'pixi.js';
-
-import { Button } from '@pixi/ui';
 import { Viewport } from 'pixi-viewport';
 import {
   initializeViewport,
   initializeViewportPlugins,
-} from './shared/Viewport';
-import { resetView } from './shared/Viewport/resetView';
-import { bottomTollbar } from './components/static/bottomToolbar';
+} from 'src/shared/Viewport';
+import { resetView } from 'src/shared/Viewport/resetView';
+import { bottomTollbar } from 'src/components/static/bottomToolbar';
 
 // Asynchronous IIFE
 (async () => {

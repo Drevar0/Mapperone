@@ -1,7 +1,7 @@
 import { ButtonContainer as PixiButtonContainer } from '@pixi/ui';
 import { Container } from 'pixi.js';
-import ButtonText from '../StyleExtension/ButtonText';
-import BaseButtonGraphics from '../StyleExtension/BaseButtonGraphics';
+import ButtonText from 'src/components/StyleExtension/ButtonText';
+import BaseButtonGraphics from 'src/components/StyleExtension/BaseButtonGraphics';
 
 interface IButtonProps {
   x?: number;

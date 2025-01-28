@@ -1,7 +1,7 @@
-import { INode } from "./node";
+import { INode } from 'src/interfaces/node';
 
 export interface IStage {
-    id: string;
-    name: string;
-    initialNode: INode;
+  id: string;
+  name: string;
+  initialNode: INode;
 }

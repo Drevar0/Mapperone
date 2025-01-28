@@ -1,5 +1,5 @@
 import { TextStyle, Text } from 'pixi.js';
-import { theme } from '../../shared/constant/theme';
+import { theme } from 'src/shared/constant/theme';
 
 interface IButtonTextProps {
   text: string;
