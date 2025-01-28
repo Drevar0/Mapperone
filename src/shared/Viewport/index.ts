@@ -13,6 +13,7 @@ export const initializeViewport = (events: EventSystem) => {
     worldWidth: WORLD_WIDTH,
     worldHeight: WORLD_HEIGHT,
     events: events, // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+    threshold: 10
   });
 
   const line = viewport.addChild(new Graphics());
@@ -24,6 +25,12 @@ export const initializeViewport = (events: EventSystem) => {
       alpha: 1,
     })
     .stroke();
+
+    
+  window.addEventListener('resize', () => {
+    console.log("resize viewport")
+    viewport.resize(window.innerWidth, window.innerHeight, WORLD_WIDTH, WORLD_HEIGHT);
+  });
 
   return viewport;
 };

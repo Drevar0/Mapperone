@@ -43,7 +43,7 @@ import { bottomTollbar } from './components/static/bottomToolbar';
   const graphics = new Graphics();
 
   //add reactangle
-  graphics.rect(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 100, 100).fill(0xff0000);
+  graphics.rect(100,100, 100, 100).fill(0xff0000);
 
   // Add the graphics to the stage.
 
