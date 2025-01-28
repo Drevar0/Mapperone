@@ -10,7 +10,6 @@ import {
   initializeViewportPlugins,
 } from './shared/Viewport';
 import { resetView } from './shared/Viewport/resetView';
-import { WORLD_HEIGHT, WORLD_WIDTH } from './shared/constant/viewport';
 import { bottomTollbar } from './components/static/bottomToolbar';
 
 // Asynchronous IIFE
@@ -38,27 +37,6 @@ import { bottomTollbar } from './components/static/bottomToolbar';
   app.stage.addChild(viewport);
   initializeViewportPlugins();
   resetView(viewport);
-
-  // Create a new instance of the Graphics class.
-  const graphics = new Graphics();
-
-  //add reactangle
-  graphics.rect(100,100, 100, 100).fill(0xff0000);
-
-  // Add the graphics to the stage.
-
-  //add button
-  const container = new Container();
-  const button = new Button(
-    new Graphics()
-      .rect(WORLD_WIDTH / 2 + 200, WORLD_HEIGHT / 2 + 100, 100, 50)
-      .fill(0x22ffff),
-  );
-
-
-  container.addChild(button.view);
-  viewport.addChild(graphics);
-  viewport.addChild(container);
 
   app.stage.addChild(bottomTollbar());
 })();
