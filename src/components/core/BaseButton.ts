@@ -11,6 +11,7 @@ interface IButtonProps {
   radius?: number;
   text?: string;
   disabled?: boolean;
+  zIndex?: number;
   onClick?: () => void;
 }
 
@@ -22,6 +23,7 @@ const BaseButton = ({
   height = 35,
   radius = 5,
   disabled = false,
+  zIndex = 0,
   onClick,
 }: IButtonProps) => {
   //base configs
@@ -32,12 +34,15 @@ const BaseButton = ({
 
   const buttonView = new Container();
   const buttonBg = new BaseButtonGraphics();
-  buttonBg.styleBase(x, y, width, height, radius);
+  buttonBg.styleBase(x, y, width, height, radius, zIndex);
 
   const buttonText = new ButtonText({
     text,
+    x,
+    y,
     containerWidth: buttonBg.width,
     containerHeight: buttonBg.height,
+    zIndex,
   });
   buttonView.addChild(buttonBg, buttonText);
   button.addChild(buttonView);
@@ -45,11 +50,11 @@ const BaseButton = ({
   //events
   button.onHover.connect(() => {
     buttonBg.clear();
-    buttonBg.styleHover(x, y, width, height, radius);
+    buttonBg.styleHover(x, y, width, height, radius, zIndex);
   });
   button.onOut.connect(() => {
     buttonBg.clear();
-    buttonBg.styleBase(x, y, width, height, radius);
+    buttonBg.styleBase(x, y, width, height, radius, zIndex);
   });
 
   return button;

@@ -1,10 +1,13 @@
 import { TextStyle, Text } from 'pixi.js';
-import { theme } from 'src/shared/constant/theme';
+import { theme } from 'src/constant/theme';
 
 interface IButtonTextProps {
   text: string;
+  x?: number;
+  y?: number;
   containerWidth: number;
   containerHeight: number;
+  zIndex: number;
 }
 
 const textStyle = new TextStyle({
@@ -15,13 +18,21 @@ const textStyle = new TextStyle({
 });
 
 class ButtonText extends Text {
-  constructor({ text, containerWidth, containerHeight }: IButtonTextProps) {
+  constructor({
+    text,
+    x = 0,
+    y = 0,
+    containerWidth,
+    containerHeight,
+    zIndex,
+  }: IButtonTextProps) {
     super({
       text: text,
       style: textStyle,
       anchor: 0.5,
-      x: containerWidth / 2,
-      y: containerHeight / 2,
+      x: x + containerWidth / 2,
+      y: y + containerHeight / 2,
+      zIndex,
     });
   }
 }
