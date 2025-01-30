@@ -1,6 +1,6 @@
 import { Container, Graphics, Text, TextStyle } from 'pixi.js';
-import { getViewport } from 'src/shared/matchScene';
-import { resetView } from 'src/shared/matchScene/resetView';
+import { getViewport } from 'src/shared/viewport';
+import { resetView } from 'src/shared/viewport/resetView';
 import BaseButton from 'src/components/core/BaseButton';
 
 export const bottomTollbar = () => {

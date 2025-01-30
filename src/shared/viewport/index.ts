@@ -4,9 +4,22 @@ import { BORDER, WORLD_HEIGHT, WORLD_WIDTH } from 'src/constant/viewport';
 
 let viewport: Viewport;
 
+interface IViewport {
+  events: EventSystem;
+  type: 'match' | 'build';
+}
+
 export const getViewport = () => viewport;
 
-export const initializeMatchViewport = (events: EventSystem) => {
+export const setBorderStyle = (border: Graphics, color: number) => {
+  border
+    .clear()
+    .rect(0, 0, WORLD_WIDTH, WORLD_HEIGHT)
+    .setStrokeStyle({ width: BORDER, color, alpha: 1 })
+    .stroke();
+};
+
+export const initializeViewport = ({ events, type }: IViewport) => {
   viewport = new Viewport({
     screenWidth: window.innerWidth,
     screenHeight: window.innerHeight,
@@ -16,15 +29,9 @@ export const initializeMatchViewport = (events: EventSystem) => {
     threshold: 10,
   });
 
-  const line = viewport.addChild(new Graphics());
-  line
-    .rect(0, 0, WORLD_WIDTH, WORLD_HEIGHT)
-    .setStrokeStyle({
-      width: BORDER,
-      color: 0xffcccc, // red
-      alpha: 1,
-    })
-    .stroke();
+  const line = viewport.addChild(new Graphics({}));
+  line.label = 'viewportBorder';
+  setBorderStyle(line, type === 'build' ? 0xffcccc : 0xccffcc);
 
   window.addEventListener('resize', () => {
     viewport.resize(
@@ -38,6 +45,6 @@ export const initializeMatchViewport = (events: EventSystem) => {
   return viewport;
 };
 
-export const initializeMatchViewportPlugins = () => {
+export const initializeViewportPlugins = () => {
   viewport.fit().drag().pinch().wheel().decelerate();
 };

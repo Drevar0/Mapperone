@@ -1,19 +1,15 @@
-import { Application, ApplicationOptions, Container } from 'pixi.js';
+import { Application, ApplicationOptions, Graphics } from 'pixi.js';
 
 import { Viewport } from 'pixi-viewport';
 import {
-  initializeMatchViewport,
-  initializeMatchViewportPlugins,
-} from 'src/shared/matchScene';
-import {
-  initializeBuildViewport,
-  initializeBuildViewportPlugins,
-} from 'src/shared/buildScene';
-import { resetView } from 'src/shared/matchScene/resetView';
+  initializeViewport,
+  initializeViewportPlugins,
+  setBorderStyle,
+} from 'src/shared/viewport';
+import { resetView } from 'src/shared/viewport/resetView';
 import { bottomTollbar } from 'src/components/static/bottomToolbar';
 import { theme } from './constant/theme';
 import staticInterface from './shared/staticInterface';
-import { app } from 'electron';
 
 // Asynchronous IIFE
 (async () => {
@@ -35,29 +31,34 @@ import { app } from 'electron';
 
   // Intialize the application.
   await app.init(appOptions);
-  initializeApp(app, 'match');
+  await initializeApp(app, 'match');
 })();
 
-const initializeApp = (app: Application, type: 'match' | 'build') => {
-  const viewport: Viewport =
-    type === 'match'
-      ? initializeMatchViewport(app.renderer.events)
-      : initializeBuildViewport(app.renderer.events);
+const initializeApp = async (app: Application, type: 'match' | 'build') => {
+  const viewport: Viewport = initializeViewport({
+    events: app.renderer.events,
+    type,
+  });
 
   app.stage.addChild(viewport);
-  type === 'match'
-    ? initializeMatchViewportPlugins()
-    : initializeBuildViewportPlugins();
+  initializeViewportPlugins();
   resetView(viewport);
 
   staticInterface({
     onSceneChange: scene => {
+      const border = viewport.children.find(
+        child => child.label === 'viewportBorder',
+      ) as Graphics | undefined;
+
+      console.log(border);
+      if (border === undefined) {
+        return;
+      }
+
       if (scene === 'build') {
-        app.stage.removeChildren();
-        initializeApp(app, 'build');
+        setBorderStyle(border, 0xffcccc);
       } else if (scene === 'match') {
-        app.stage.removeChildren();
-        initializeApp(app, 'match');
+        setBorderStyle(border, 0xccffcc);
       }
     },
     app,
