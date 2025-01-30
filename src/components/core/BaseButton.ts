@@ -30,7 +30,7 @@ const BaseButton = ({
   const button = new PixiButtonContainer();
   button.enabled = !disabled;
 
-  button.onPress.connect(() => onClick());
+  onClick && button.onPress.connect(() => onClick());
 
   const buttonView = new Container();
   const buttonBg = new BaseButtonGraphics();

@@ -11,7 +11,7 @@ interface IViewport {
 
 export const getViewport = () => viewport;
 
-export const setBorderStyle = (border: Graphics, color: number) => {
+export const setViewportBorderStyle = (border: Graphics, color: number) => {
   border
     .clear()
     .rect(0, 0, WORLD_WIDTH, WORLD_HEIGHT)
@@ -31,7 +31,7 @@ export const initializeViewport = ({ events, type }: IViewport) => {
 
   const line = viewport.addChild(new Graphics({}));
   line.label = 'viewportBorder';
-  setBorderStyle(line, type === 'build' ? 0xffcccc : 0xccffcc);
+  setViewportBorderStyle(line, type === 'build' ? 0xffcccc : 0xccffcc);
 
   window.addEventListener('resize', () => {
     viewport.resize(

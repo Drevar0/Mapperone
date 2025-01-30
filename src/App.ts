@@ -4,7 +4,7 @@ import { Viewport } from 'pixi-viewport';
 import {
   initializeViewport,
   initializeViewportPlugins,
-  setBorderStyle,
+  setViewportBorderStyle,
 } from 'src/shared/viewport';
 import { resetView } from 'src/shared/viewport/resetView';
 import { bottomTollbar } from 'src/components/static/bottomToolbar';
@@ -50,15 +50,16 @@ const initializeApp = async (app: Application, type: 'match' | 'build') => {
         child => child.label === 'viewportBorder',
       ) as Graphics | undefined;
 
-      console.log(border);
       if (border === undefined) {
         return;
       }
 
       if (scene === 'build') {
-        setBorderStyle(border, 0xffcccc);
+        setViewportBorderStyle(border, 0xffcccc);
+        localStorage.setItem('scene', 'build');
       } else if (scene === 'match') {
-        setBorderStyle(border, 0xccffcc);
+        setViewportBorderStyle(border, 0xccffcc);
+        localStorage.setItem('scene', 'match');
       }
     },
     app,
