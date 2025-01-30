@@ -5,6 +5,7 @@ interface IButtonTextProps {
   text: string;
   x?: number;
   y?: number;
+  resolution?: number;
   containerWidth: number;
   containerHeight: number;
   zIndex: number;
@@ -22,6 +23,7 @@ class ButtonText extends Text {
     text,
     x = 0,
     y = 0,
+    resolution = 2,
     containerWidth,
     containerHeight,
     zIndex,
@@ -33,6 +35,7 @@ class ButtonText extends Text {
       x: x + containerWidth / 2,
       y: y + containerHeight / 2,
       zIndex,
+      resolution,
     });
   }
 }

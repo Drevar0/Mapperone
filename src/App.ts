@@ -31,7 +31,7 @@ import staticInterface from './shared/staticInterface';
 
   // Intialize the application.
   await app.init(appOptions);
-  await initializeApp(app, 'match');
+  await initializeApp(app, 'build');
 })();
 
 const initializeApp = async (app: Application, type: 'match' | 'build') => {

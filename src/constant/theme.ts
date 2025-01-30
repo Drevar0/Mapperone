@@ -1,6 +1,6 @@
 export const theme = {
   fontSize: 12,
-  fontFamily: 'Arial',
+  fontFamily: 'Segoe UI',
 
   backgroundColor: 0xffffee,
 };
